@@ -16,9 +16,9 @@ const unsigned int CART_SIZE = 10;
 		oracle::occi::ResultSet* resSet = nullptr;
 		//User Variables
 		std::string str;
-		std::string usr = "dbs311_212a34";
-		std::string pass = "26992156";
-		std::string srv = "myoracle12c.senecacollege.ca:1521/oracle12c";
+		std::string usr = "REMOVED";
+		std::string pass = "REMOVED";
+		std::string srv = "REMOVED";
 
 		ShoppingCart cart[CART_SIZE];
 
