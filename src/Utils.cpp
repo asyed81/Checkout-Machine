@@ -149,25 +149,21 @@ int checkout(oracle::occi::Connection* conn, struct ShoppingCart cart[], int cus
 	int ret = 0;
 	std::cout << "Would you like to checkout? (Y/y or N/n): ";
 	int getChoice = 1;
-	//This loop gets information from user to see if they want to check out or cancel order
+	//this loop gets information from user to see if they want to check out or cancel order
 	do
 	{
 		char choice;
 		choice = getchar();
 		std::cin.ignore();
 		if (choice == 'Y' || choice == 'y')
-		{
 			getChoice = 0;
-		}
 		else if (choice == 'N' || choice == 'n')
 		{
 			std::cout << "The order is cancelled." << std::endl;
 			return 0;
 		}
 		else
-		{
 			std::cout << "Wrong input. Please try again..." << std::endl;
-		}
 	} while (getChoice);
 	int orderId = 0;
 	try
@@ -180,7 +176,7 @@ int checkout(oracle::occi::Connection* conn, struct ShoppingCart cart[], int cus
 		statement->execute();
 		orderId = statement->getInt(2);
 
-		//In a loop, update orderlines table with information about the order
+		//In a loop, updates orderlines table with information about the order
 		for (int i = 0; i < productCount; i++)
 		{
 			//Create and execute statement to add order details to orderlines table
@@ -194,7 +190,7 @@ int checkout(oracle::occi::Connection* conn, struct ShoppingCart cart[], int cus
 			statement->execute();
 		}
 		std::cout << "\nThe order is successfully completed.\n";
-	}//If any of the statements in this function fail...
+	}//catches exceptions from occi if they occur
 	catch (oracle::occi::SQLException& sqlExcp) {
 		std::cout << sqlExcp.getErrorCode() << ": " << sqlExcp.getMessage();
 	}
